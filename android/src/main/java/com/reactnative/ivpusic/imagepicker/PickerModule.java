@@ -484,9 +484,14 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private Bitmap validateVideo(String path) throws Exception {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        retriever.setDataSource(path);
-        Bitmap bmp = retriever.getFrameAtTime();
-
+        try {
+        	retriever.setDataSource(path);
+        	Bitmap bmp = retriever.getFrameAtTime();
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+      		throw ex;
+    	}
+        
         if (bmp == null) {
             throw new Exception("Cannot retrieve video data");
         }
@@ -496,7 +501,12 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private static Long getVideoDuration(String path) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        retriever.setDataSource(path);
+        try {
+        	retriever.setDataSource(path);
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+      		throw ex;
+    	}
 
         return Long.parseLong(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
     }
