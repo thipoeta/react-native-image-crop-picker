@@ -508,7 +508,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
             retriever.setDataSource(input.getFD());
         } catch (IOException ex) {
         	ex.printStackTrace();
-      		throw ex;
+      		throw new Exception(ex.getMessage());
     	}
 
         return Long.parseLong(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
