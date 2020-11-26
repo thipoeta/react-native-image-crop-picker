@@ -484,9 +484,10 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private Bitmap validateVideo(String path) throws Exception {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        Bitmap bmp;
         try {
         	retriever.setDataSource(path);
-        	Bitmap bmp = retriever.getFrameAtTime();
+        	 bmp = retriever.getFrameAtTime();
         } catch (Exception ex) {
         	ex.printStackTrace();
       		throw ex;
