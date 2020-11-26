@@ -486,8 +486,9 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         Bitmap bmp;
         try {
-        	retriever.setDataSource(path);
-        	 bmp = retriever.getFrameAtTime();
+            FileInputStream input = new FileInputStream(path)
+        	retriever.setDataSource(input.getFD());
+            bmp = retriever.getFrameAtTime();
         } catch (Exception ex) {
         	ex.printStackTrace();
       		throw ex;
