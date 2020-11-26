@@ -506,7 +506,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         try {
             FileInputStream input = new FileInputStream(path);
             retriever.setDataSource(input.getFD());
-        } catch (Exception ex) {
+        } catch (IOException ex) {
         	ex.printStackTrace();
       		throw ex;
     	}
