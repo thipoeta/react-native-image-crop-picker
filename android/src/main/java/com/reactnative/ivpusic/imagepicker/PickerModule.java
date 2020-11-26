@@ -504,7 +504,8 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
     private static Long getVideoDuration(String path) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
-        	retriever.setDataSource(path);
+            FileInputStream input = new FileInputStream(path);
+            retriever.setDataSource(input.getFD());
         } catch (Exception ex) {
         	ex.printStackTrace();
       		throw ex;
